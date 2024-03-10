@@ -1,0 +1,34 @@
+/* 灰色模式 */
+.html-grey {
+  filter: grayscale(100%);
+}
+
+/* 色弱模式 */
+.html-weakness {
+  filter: invert(80%);
+}
+
+/** 系统logo */
+.layout-system-logo {
+  height: 30px;
+}
+
+/** 系统名 */
+.layout-system-name {
+  display: inline-block;
+  height: 32px;
+  margin: 2px 0 0 10px;
+  margin-bottom: 0 !important;
+  overflow: hidden;
+  line-height: 32px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/** 内容区域块 */
+.content-wrap {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px;
+  border-radius: 16px;
+}
