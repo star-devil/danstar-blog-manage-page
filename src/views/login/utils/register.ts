@@ -1,11 +1,11 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2024-01-18 16:21:26
- * @LastEditTime: 2024-03-02 11:00:29
+ * @LastEditTime: 2024-03-11 22:32:11
  * @LastEditors: wangqiaoling
  * @Description: 注册账号逻辑
  */
-import { postRegister } from "@api/user";
+import { postRegister } from "@api/login";
 import type { Rule } from "ant-design-vue/es/form";
 import message from "ant-design-vue/es/message";
 import { validateName, validatePass } from "./rule";

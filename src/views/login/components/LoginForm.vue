@@ -99,9 +99,9 @@ onBeforeUnmount(() => {
         </a-input-group>
       </a-form-item>
 
-      <a-form-item name="remember" :wrapper-col="{ span: 24 }">
-        <a-form-item name="remember" no-style>
-          <a-checkbox v-model:checked="formState.remember"
+      <a-form-item name="rememberMe" :wrapper-col="{ span: 24 }">
+        <a-form-item name="rememberMe" no-style>
+          <a-checkbox v-model:checked="formState.rememberMe"
             >7天内免登录
             <a-tooltip placement="right">
               <template #title

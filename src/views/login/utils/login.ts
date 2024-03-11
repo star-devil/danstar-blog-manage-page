@@ -17,7 +17,7 @@ interface FormState {
   /** 密码 */
   password: string;
   /** 记住帐号 */
-  remember: boolean;
+  rememberMe: boolean;
   /** 验证码 */
   verifyCode: string;
 }
@@ -25,7 +25,7 @@ interface FormState {
 export const formState = reactive<FormState>({
   username: "",
   password: "",
-  remember: true,
+  rememberMe: true,
   verifyCode: "",
 });
 

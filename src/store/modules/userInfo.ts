@@ -1,12 +1,12 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2024-01-23 10:42:55
- * @LastEditTime: 2024-03-02 14:18:45
+ * @LastEditTime: 2024-03-11 22:34:45
  * @LastEditors: wangqiaoling
  * @Description: 存储用户可用的个人信息
  */
+import { UserResult, postLogin, postLogout } from "@api/login";
 import { RefreshTokenResult, refreshTokenApi } from "@api/mock/user";
-import { UserResult, postLogin } from "@api/user";
 import router from "@router";
 import { removeToken, setToken } from "@utils/auth";
 import { sessionStorage, storage } from "@utils/reStorage";
@@ -62,8 +62,12 @@ export const useUserInfo = defineStore({
     },
     /** 登出 */
     userLogOut() {
-      this.removeUserInfo();
-      router.replace("/login");
+      postLogout().then((res) => {
+        if (res.code === 200) {
+          this.removeUserInfo();
+          router.replace("/login");
+        }
+      });
     },
     /** 登入 */
     async loginByUserName(data: object) {
