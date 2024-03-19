@@ -1,10 +1,11 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2024-01-18 16:21:26
- * @LastEditTime: 2024-03-02 14:17:34
+ * @LastEditTime: 2024-03-19 21:38:44
  * @LastEditors: wangqiaoling
  * @Description: 登入系统逻辑
  */
+import { getVerifyCode } from "@api/login";
 import router from "@router";
 import { useUserInfo } from "@store/modules/userInfo";
 import { getGreeting } from "@utils/greeting";
@@ -29,6 +30,21 @@ export const formState = reactive<FormState>({
   verifyCode: "",
 });
 
+/** 获取验证码 */
+export function verifyCode() {
+  getVerifyCode().then((res) => {
+    if (res.code === 200) {
+      verifyCodeInfo.key = res.data.captchaKey;
+      verifyCodeInfo.img = "data:image/png;base64," + res.data.imageBase64;
+    }
+  });
+}
+
+export const verifyCodeInfo = reactive({
+  key: "",
+  img: "",
+});
+
 export const loginLoading = ref<boolean>(false);
 
 function showNotification(nickname: string) {
@@ -43,7 +59,7 @@ export const onLogin = (values: any) => {
   loginLoading.value = true;
   if (!values) return;
   useUserInfo()
-    .loginByUserName(values)
+    .loginByUserName({ ...values, verifyKey: verifyCodeInfo.key })
     .then((res) => {
       console.log(res);
       router.replace("/");

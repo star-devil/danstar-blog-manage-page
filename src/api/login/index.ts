@@ -1,7 +1,7 @@
 /*
  * @Author: wangqiaoling
  * @Date: 2024-03-11 22:29:51
- * @LastEditTime: 2024-03-11 22:33:57
+ * @LastEditTime: 2024-03-19 21:32:23
  * @LastEditors: wangqiaoling
  * @Description:
  */
@@ -20,6 +20,11 @@ export const postRegister = (data?: object) => {
 /** 退出登录 */
 export const postLogout = () => {
   return http.post<RegisterResult>("/account/logout");
+};
+
+/** 获取验证码 */
+export const getVerifyCode = () => {
+  return http.get<VerifyCodeResult>("/account/captcha");
 };
 
 export type UserResult = {
@@ -45,5 +50,14 @@ export type UserResult = {
 export interface RegisterResult {
   message: string;
   data: object;
+  code: number;
+}
+
+export interface VerifyCodeResult {
+  message: string;
+  data: {
+    captchaKey: string;
+    imageBase64: string;
+  };
   code: number;
 }

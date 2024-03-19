@@ -1,14 +1,20 @@
 <!--
  * @Author: wangqiaoling
  * @Date: 2024-01-19 14:14:17
- * @LastEditTime: 2024-01-30 14:32:22
+ * @LastEditTime: 2024-03-19 21:47:15
  * @LastEditors: wangqiaoling
  * @Description: 登录表单
 -->
 <script setup lang="ts">
 import { useUserInfo } from "@store/modules/userInfo";
 import type { FormInstance } from "ant-design-vue";
-import { formState, loginLoading, onLogin } from "../utils/login";
+import {
+  formState,
+  loginLoading,
+  onLogin,
+  verifyCode,
+  verifyCodeInfo,
+} from "../utils/login";
 import { loginRules } from "../utils/rule";
 
 const emit = defineEmits<{
@@ -41,6 +47,9 @@ watchEffect(() => {
 const loginFormRef = ref<FormInstance>();
 onBeforeUnmount(() => {
   loginFormRef.value.resetFields();
+});
+onBeforeMount(() => {
+  verifyCode();
 });
 </script>
 
@@ -94,7 +103,10 @@ onBeforeUnmount(() => {
           <a-image
             :width="150"
             :height="32"
-            src="/src/assets/images/testCode.png"
+            :src="verifyCodeInfo.img"
+            :preview="false"
+            @click="verifyCode"
+            class="cursor-pointer"
           />
         </a-input-group>
       </a-form-item>
